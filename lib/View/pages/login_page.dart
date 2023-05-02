@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:r_clean_admin/View/Components/text_field.dart';
 import 'package:r_clean_admin/View/pages/main_navigator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:theme_manager/theme_manager.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,7 +34,16 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
-  validation() async {
+  bool getMode() {
+    String currentMode = ThemeManager.of(context).brightness.toString().split('.')[1];
+    if (currentMode == 'dark') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void validation() async {
     if (mted[0].text.isNotEmpty && mted[1].text.isNotEmpty) {
       saveSeason();
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MainNavigator()));
@@ -63,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  error() {
+  Container error() {
     return Container(
       margin: const EdgeInsets.all(10),
       child: Text(
@@ -77,13 +87,11 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [
-            Colors.blue.withOpacity(0),
-            Colors.blue.withOpacity(0.2),
-            Colors.blue.withOpacity(0.4),
-            Colors.blue.withOpacity(0.6),
+          gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
             Colors.blue.withOpacity(0.8),
-            Colors.blue.withOpacity(1),
+            Colors.blue.withOpacity(0.6),
+            Colors.blue.withOpacity(0.4),
+            Colors.blue.withOpacity(0.2),
           ])),
       width: 550,
       height: 300,
@@ -92,13 +100,17 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  SizedBox logo() {
+    return SizedBox(height: 250, width: 250, child: getMode() ? Image.asset('lib/assets/1.png') : Image.asset('lib/assets/0.png'));
+  }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
-        child: input(h: h, w: w),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [logo(), const SizedBox(height: 50), input(h: h, w: w)]),
       ),
     );
   }
