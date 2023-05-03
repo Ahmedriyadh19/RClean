@@ -28,7 +28,6 @@ class _RequestsPageState extends State<RequestsPage> {
             state: 'KL',
             dateTime: DateTime.now(),
             userID: UniqueID().getID(),
-            rate: i % 6,
             price: 54.2,
             typeHome: 2,
             prefer: 0,
@@ -40,10 +39,7 @@ class _RequestsPageState extends State<RequestsPage> {
                     'https://cdn.pixabay.com/photo/2017/02/09/21/08/wings-2053515_960_720.png'
                   ]
                 : [],
-            description:
-                'ore3h oih 24hugh3 n n35gn3n uhn  35injun g3kn3 5ogn 35nn 3h n35tach 53tg n erv f dd s   hb gri bg ri g nu34g ore3h oih 24hugh3 n n35gn3n uhn  35injun g3kn3 5ogn 35nn 3h n35tach 53tg n erv f dd s   hb gri bg ri g nu34g ',
-            status: i % 6,
-            videoURL: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'),
+            status: i % 6),
       ));
     }
   }

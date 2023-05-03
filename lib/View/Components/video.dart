@@ -13,8 +13,10 @@ class VideoScreenDisplay extends StatefulWidget {
 
 class VideoScreenDisplayState extends State<VideoScreenDisplay> {
   late CustomVideoPlayerWebController _customVideoPlayerWebController;
-  late final CustomVideoPlayerWebSettings _customVideoPlayerWebSettings =
-      CustomVideoPlayerWebSettings(hideDownloadButton: true, src: widget.path, enableControls: true);
+  late final CustomVideoPlayerWebSettings _customVideoPlayerWebSettings = CustomVideoPlayerWebSettings(
+    src: widget.path,
+    enableControls: true,
+  );
   @override
   void initState() {
     super.initState();
@@ -31,5 +33,3 @@ class VideoScreenDisplayState extends State<VideoScreenDisplay> {
     );
   }
 }
-
-

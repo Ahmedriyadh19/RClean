@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:r_clean_admin/Controller/my_custom_scroll_behavior.dart';
 import 'package:r_clean_admin/View/pages/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
@@ -21,11 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeManager(
-      defaultBrightnessPreference: BrightnessPreference.dark,
+      defaultBrightnessPreference: BrightnessPreference.system,
       data: (Brightness brightness) => ThemeData(primarySwatch: Colors.blue, brightness: brightness, useMaterial3: true),
       loadBrightnessOnStart: true,
       themedWidgetBuilder: (BuildContext context, ThemeData theme) {
         return MaterialApp(
+          scrollBehavior: MyCustomScrollBehavior(),
           debugShowCheckedModeBanner: false,
           title: 'RClean - Admin',
           theme: theme,

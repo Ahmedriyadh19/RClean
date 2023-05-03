@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stories/flutter_stories.dart';
 import 'package:intl/intl.dart';
 import 'package:r_clean_admin/Model/service_request.dart';
+import 'package:r_clean_admin/Model/user.dart';
 import 'package:r_clean_admin/View/Components/view_services.dart';
 
 class RequestServicesBox extends StatelessWidget {
@@ -136,14 +137,19 @@ class RequestServicesBox extends StatelessWidget {
         ),
       ),
       height: double.maxFinite,
-      child: Column(children: [
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+
         Text(service.state),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(child: SelectableText(service.description!)),
-          ),
-        ),
+        (service.description != null && service.description!.isNotEmpty)
+            ? Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(child: SelectableText(service.description!)),
+                ),
+              )
+            : Text('description N/A'.toUpperCase()),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [drawStars()],
@@ -152,20 +158,21 @@ class RequestServicesBox extends StatelessWidget {
     );
   }
 
-  Future view(BuildContext context) async {
+  Future view({required BuildContext context, required List<MyUser> x}) async {
     return showModalBottomSheet(
       enableDrag: true,
       context: context,
       elevation: 50,
       isDismissible: true,
-      isScrollControlled: true,
-      backgroundColor: stateChanger().withOpacity(0.7),
+      barrierColor: stateChanger().withOpacity(0.8),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
       ),
       builder: (_) {
         return ViewServices(
           serviceRequest: service,
+          cleaner: x[0],
+          customer: x[1],
         );
       },
     );
@@ -191,11 +198,19 @@ class RequestServicesBox extends StatelessWidget {
     return Row(children: stars);
   }
 
+  List<MyUser> fetchUsers() {
+    List<MyUser> x = [];
+    for (var i = 0; i < 2; i++) {
+      x.add(MyUser(address: 'ss', email: 'hfh', id: '', name: 'jsonc', password: 'raja', phone: '+57441f', rate: 5, type: 1));
+    }
+    return x;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        return view(context);
+        return view(context: context, x: fetchUsers());
       },
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
