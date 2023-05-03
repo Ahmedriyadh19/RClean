@@ -73,7 +73,6 @@ class RequestServicesBox extends StatelessWidget {
                     service.pic![idx]!,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;
-
                       return const Center(child: CircularProgressIndicator());
                     },
                     errorBuilder: (context, error, stackTrace) => const Center(child: Text('Some errors occurred!')),
@@ -137,10 +136,7 @@ class RequestServicesBox extends StatelessWidget {
         ),
       ),
       height: double.maxFinite,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-
+      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Text(service.state),
         (service.description != null && service.description!.isNotEmpty)
             ? Expanded(
@@ -152,7 +148,7 @@ class RequestServicesBox extends StatelessWidget {
             : Text('description N/A'.toUpperCase()),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [drawStars()],
+          children: [drawStars(), service.prefer == 0 ? const Icon(Icons.man_2_rounded) : const Icon(Icons.woman_2_rounded)],
         ),
       ]),
     );
@@ -171,7 +167,7 @@ class RequestServicesBox extends StatelessWidget {
       builder: (_) {
         return ViewServices(
           serviceRequest: service,
-          cleaner: x[0],
+         // cleaner: x[0],
           customer: x[1],
         );
       },

@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'package:r_clean_admin/Model/service_request.dart';
 import 'package:r_clean_admin/Model/user.dart';
 import 'package:r_clean_admin/View/Components/video.dart';
@@ -9,12 +7,12 @@ import 'package:r_clean_admin/View/Components/video.dart';
 class ViewServices extends StatelessWidget {
   final ServiceRequest serviceRequest;
   final MyUser customer;
-  final MyUser cleaner;
+  final MyUser? cleaner;
   const ViewServices({
     Key? key,
     required this.serviceRequest,
     required this.customer,
-    required this.cleaner,
+    this.cleaner,
   }) : super(key: key);
 
   String getStatus() {
@@ -117,7 +115,7 @@ class ViewServices extends StatelessWidget {
               dates(),
               users(),
               if (serviceRequest.description != null && serviceRequest.description!.isNotEmpty) description(),
-              rateFeedback()
+              rateFeedback(w: w)
             ]))));
   }
 
@@ -153,19 +151,21 @@ class ViewServices extends StatelessWidget {
                 w: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               const CircleAvatar(),
               const SizedBox(width: 10),
-              SizedBox(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                Text(
-                  cleaner.name.toUpperCase(),
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  cleaner.phone.toUpperCase(),
-                ),
-                Text(
-                  cleaner.email.toLowerCase(),
-                )
-              ]))
+              cleaner != null
+                  ? SizedBox(
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                      Text(
+                        cleaner!.name.toUpperCase(),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        cleaner!.phone.toUpperCase(),
+                      ),
+                      Text(
+                        cleaner!.email.toLowerCase(),
+                      )
+                    ]))
+                  : Text('Unassigned'.toUpperCase())
             ]))
           ])
         ]));
@@ -191,15 +191,26 @@ class ViewServices extends StatelessWidget {
     return Row(children: stars);
   }
 
-  Row rateFeedback() {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      box(
-          w: (serviceRequest.feedback != null && serviceRequest.feedback!.isNotEmpty)
-              ? SelectableText(serviceRequest.feedback!)
-              : Text('feedback N/A'.toUpperCase())),
-      const SizedBox(width: 15),
-      box(w: drawStars())
-    ]);
+  rateFeedback({required double w}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        box(
+            w: (serviceRequest.feedback != null && serviceRequest.feedback!.isNotEmpty)
+                ? Container(
+                    width: w / 2.5,
+                    padding: const EdgeInsets.all(8.0),
+                    child: SingleChildScrollView(
+                        child: SelectableText(
+                      serviceRequest.feedback!,
+                      textAlign: TextAlign.start,
+                    )),
+                  )
+                : Text('feedback N/A'.toUpperCase())),
+        const SizedBox(width: 15),
+        box(w: drawStars())
+      ]),
+    );
   }
 
   @override
