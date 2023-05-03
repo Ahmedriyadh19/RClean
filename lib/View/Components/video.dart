@@ -1,38 +1,35 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/material.dart';
 
-class MyScreen extends StatefulWidget {
+class VideoScreenDisplay extends StatefulWidget {
   final String path;
-  const MyScreen({
+  const VideoScreenDisplay({
     Key? key,
     required this.path,
   }) : super(key: key);
   @override
-  State<MyScreen> createState() => MyScreenState();
+  State<VideoScreenDisplay> createState() => VideoScreenDisplayState();
 }
 
-class MyScreenState extends State<MyScreen> {
-  late VideoPlayerController _videoPlayerController;
-  late CustomVideoPlayerController _customVideoPlayerController;
-
+class VideoScreenDisplayState extends State<VideoScreenDisplay> {
+  late CustomVideoPlayerWebController _customVideoPlayerWebController;
+  late final CustomVideoPlayerWebSettings _customVideoPlayerWebSettings =
+      CustomVideoPlayerWebSettings(hideDownloadButton: true, src: widget.path, enableControls: true);
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.network(widget.path)..initialize().then((value) => setState(() {}));
-    _customVideoPlayerController = CustomVideoPlayerController(
-        context: context,
-        videoPlayerController: _videoPlayerController,
-        customVideoPlayerSettings: const CustomVideoPlayerSettings(showDurationPlayed: true, showPlayButton: true, showDurationRemaining: true));
-  }
 
-  @override
-  void dispose() {
-    _customVideoPlayerController.dispose();
-    super.dispose();
+    _customVideoPlayerWebController = CustomVideoPlayerWebController(
+      webVideoPlayerSettings: _customVideoPlayerWebSettings,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomVideoPlayer(customVideoPlayerController: _customVideoPlayerController);
+    return CustomVideoPlayerWeb(
+      customVideoPlayerWebController: _customVideoPlayerWebController,
+    );
   }
 }
+
+

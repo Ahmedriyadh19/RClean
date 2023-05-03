@@ -43,7 +43,7 @@ class _RequestsPageState extends State<RequestsPage> {
             description:
                 'ore3h oih 24hugh3 n n35gn3n uhn  35injun g3kn3 5ogn 35nn 3h n35tach 53tg n erv f dd s   hb gri bg ri g nu34g ore3h oih 24hugh3 n n35gn3n uhn  35injun g3kn3 5ogn 35nn 3h n35tach 53tg n erv f dd s   hb gri bg ri g nu34g ',
             status: i % 6,
-            videoURL: 'https://user-images.githubusercontent.com/28951144/229373695-22f88f13-d18f-4288-9bf1-c3e078d83722.mp4'),
+            videoURL: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'),
       ));
     }
   }

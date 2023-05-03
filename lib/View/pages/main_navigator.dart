@@ -13,7 +13,7 @@ class MainNavigator extends StatefulWidget {
 }
 
 class _MainNavigatorState extends State<MainNavigator> {
-  final Map<String, Widget> navigation = {'Dashboard': const DashboardPage(), 'Requests Service': const RequestsPage(), 'Users': const UsersPage()};
+  final Map<String, Widget> navigation = {'Dashboard': const DashboardPage(), 'Requests Clean': const RequestsPage(), 'Users': const UsersPage()};
   late bool _isDark;
   int index = 0;
 

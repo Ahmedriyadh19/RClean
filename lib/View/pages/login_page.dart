@@ -12,8 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final List<TextEditingController> mted = [TextEditingController(), TextEditingController()];
-  final List<MyTextField> mtf = [];
+  final List<TextEditingController> inputText = [TextEditingController(), TextEditingController()];
+  final List<MyTextField> myTextField = [];
   String? errorText;
   bool loginError = false;
 
@@ -21,16 +21,16 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
 
-    mtf.add(MyTextField(
+    myTextField.add(MyTextField(
       isPassword: false,
       name: 'Email',
-      myController: mted[0],
+      myController: inputText[0],
     ));
 
-    mtf.add(MyTextField(
+    myTextField.add(MyTextField(
       isPassword: true,
       name: 'Password',
-      myController: mted[1],
+      myController: inputText[1],
     ));
   }
 
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void validation() async {
-    if (mted[0].text.isNotEmpty && mted[1].text.isNotEmpty) {
+    if (inputText[0].text.isNotEmpty && inputText[1].text.isNotEmpty) {
       saveSeason();
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MainNavigator()));
     } else {
@@ -96,12 +96,18 @@ class _LoginPageState extends State<LoginPage> {
       width: 550,
       height: 300,
       padding: const EdgeInsets.all(20),
-      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [mtf[0], mtf[1], if (loginError) error(), submitBtn()]),
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [myTextField[0], myTextField[1], if (loginError) error(), submitBtn()]),
     );
   }
 
-  SizedBox logo() {
-    return SizedBox(height: 250, width: 250, child: getMode() ? Image.asset('lib/assets/1.png') : Image.asset('lib/assets/0.png'));
+  Container logo() {
+    return Container(
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.circular(250), border: Border.all(width: 5, color: getMode() ? Colors.white : Colors.black)),
+        height: 300,
+        width: 300,
+        child: Padding(padding: const EdgeInsets.all(25), child: getMode() ? Image.asset('lib/assets/1.png') : Image.asset('lib/assets/0.png')));
   }
 
   @override

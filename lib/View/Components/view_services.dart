@@ -84,9 +84,13 @@ class ViewServices extends StatelessWidget {
                   children: [Expanded(child: SelectableText(serviceRequest.description!))],
                 ),
                 Expanded(
-                    child: MyScreen(
-                  path: serviceRequest.videoURL!,
-                )),
+
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: VideoScreenDisplay(
+                                      path: serviceRequest.videoURL!,
+                                    ),
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [Text('FEEDBACK '), Text('RATING ')],
