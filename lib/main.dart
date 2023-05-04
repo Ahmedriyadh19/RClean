@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:r_clean_admin/Controller/my_custom_scroll_behavior.dart';
-import 'package:r_clean_admin/View/pages/login_page.dart';
+import 'package:r_clean_admin/View/Pages/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
-import 'View/pages/main_navigator.dart';
+import 'View/Pages/main_navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

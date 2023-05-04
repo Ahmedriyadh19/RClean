@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:r_clean_admin/View/Components/my_drawer.dart';
-import 'package:r_clean_admin/View/pages/dashboard_page.dart';
-import 'package:r_clean_admin/View/pages/requests_page.dart';
-import 'package:r_clean_admin/View/pages/users_page.dart';
+import 'package:r_clean_admin/View/Pages/dashboard_page.dart';
+import 'package:r_clean_admin/View/Pages/requests_page.dart';
+import 'package:r_clean_admin/View/Pages/users_page.dart';
 import 'package:theme_manager/theme_manager.dart';
 
 class MainNavigator extends StatefulWidget {

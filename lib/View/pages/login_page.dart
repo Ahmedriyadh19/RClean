@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:r_clean_admin/View/Components/text_field.dart';
-import 'package:r_clean_admin/View/pages/main_navigator.dart';
+import 'package:r_clean_admin/View/Pages/main_navigator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
 

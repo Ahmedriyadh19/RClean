@@ -2,15 +2,16 @@
 import 'dart:convert';
 
 class MyUser {
-  String id;
-  String name;
-  String password;
-  String address;
-  String phone;
-  String email;
-  int type;
-  int rate;
-  
+  final String id;
+  final String name;
+  final String password;
+  final String address;
+  final String phone;
+  final String email;
+  final bool isMale;
+  final int type;
+  final int rate;
+
   MyUser({
     required this.id,
     required this.name,
@@ -18,6 +19,7 @@ class MyUser {
     required this.address,
     required this.phone,
     required this.email,
+    required this.isMale,
     required this.type,
     required this.rate,
   });
@@ -29,6 +31,7 @@ class MyUser {
     String? address,
     String? phone,
     String? email,
+    bool? isMale,
     int? type,
     int? rate,
   }) {
@@ -39,6 +42,7 @@ class MyUser {
       address: address ?? this.address,
       phone: phone ?? this.phone,
       email: email ?? this.email,
+      isMale: isMale ?? this.isMale,
       type: type ?? this.type,
       rate: rate ?? this.rate,
     );
@@ -52,6 +56,7 @@ class MyUser {
       'address': address,
       'phone': phone,
       'email': email,
+      'isMale': isMale,
       'type': type,
       'rate': rate,
     };
@@ -65,6 +70,7 @@ class MyUser {
       address: map['address'] as String,
       phone: map['phone'] as String,
       email: map['email'] as String,
+      isMale: map['isMale'] as bool,
       type: map['type'] as int,
       rate: map['rate'] as int,
     );
@@ -76,33 +82,34 @@ class MyUser {
 
   @override
   String toString() {
-    return 'MyUser(id: $id, name: $name, password: $password, address: $address, phone: $phone, email: $email, type: $type, rate: $rate)';
+    return 'MyUser(id: $id, name: $name, password: $password, address: $address, phone: $phone, email: $email, isMale: $isMale, type: $type, rate: $rate)';
   }
 
   @override
   bool operator ==(covariant MyUser other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.password == password &&
-      other.address == address &&
-      other.phone == phone &&
-      other.email == email &&
-      other.type == type &&
-      other.rate == rate;
+
+    return other.id == id &&
+        other.name == name &&
+        other.password == password &&
+        other.address == address &&
+        other.phone == phone &&
+        other.email == email &&
+        other.isMale == isMale &&
+        other.type == type &&
+        other.rate == rate;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      password.hashCode ^
-      address.hashCode ^
-      phone.hashCode ^
-      email.hashCode ^
-      type.hashCode ^
-      rate.hashCode;
+        name.hashCode ^
+        password.hashCode ^
+        address.hashCode ^
+        phone.hashCode ^
+        email.hashCode ^
+        isMale.hashCode ^
+        type.hashCode ^
+        rate.hashCode;
   }
 }

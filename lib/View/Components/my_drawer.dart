@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:r_clean_admin/View/Components/admin_option.dart';
 import 'package:r_clean_admin/View/Components/background.dart';
-import 'package:r_clean_admin/View/pages/login_page.dart';
+import 'package:r_clean_admin/View/Pages/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyDrawer extends StatefulWidget {

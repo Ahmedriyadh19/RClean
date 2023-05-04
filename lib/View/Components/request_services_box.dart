@@ -4,7 +4,7 @@ import 'package:flutter_stories/flutter_stories.dart';
 import 'package:intl/intl.dart';
 import 'package:r_clean_admin/Model/service_request.dart';
 import 'package:r_clean_admin/Model/user.dart';
-import 'package:r_clean_admin/View/Components/view_services.dart';
+import 'package:r_clean_admin/View/Pages/Branch%20Pages/view_services.dart';
 
 class RequestServicesBox extends StatelessWidget {
   final ServiceRequest service;
@@ -162,12 +162,12 @@ class RequestServicesBox extends StatelessWidget {
       isDismissible: true,
       barrierColor: stateChanger().withOpacity(0.8),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
       ),
       builder: (_) {
         return ViewServices(
           serviceRequest: service,
-         // cleaner: x[0],
+          cleaner: x[0],
           customer: x[1],
         );
       },
@@ -197,7 +197,7 @@ class RequestServicesBox extends StatelessWidget {
   List<MyUser> fetchUsers() {
     List<MyUser> x = [];
     for (var i = 0; i < 2; i++) {
-      x.add(MyUser(address: 'ss', email: 'hfh', id: '', name: 'jsonc', password: 'raja', phone: '+57441f', rate: 5, type: 1));
+      x.add(MyUser(address: 'ss', email: 'hfh', id: '', name: 'jsonc', password: 'raja', phone: '+57441f', rate: 5, type: 1, isMale: true));
     }
     return x;
   }
