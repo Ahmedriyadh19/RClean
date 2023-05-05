@@ -53,21 +53,21 @@ class _RequestsPageState extends State<RequestsPage> {
     }
   }
 
+  sorting() {
+    return Container(
+      height: 50,
+      width: 150,
+      color: Colors.greenAccent,
+      child: Row(children: const []),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return requestsClean.isNotEmpty
         ? Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 60,
-                    width: 600,
-                    color: Colors.greenAccent,
-                  )
-                ],
-              ),
+              //  sorting(),
               Expanded(
                 child: GridView(
                   padding: const EdgeInsets.all(15),

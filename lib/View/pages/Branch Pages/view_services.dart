@@ -55,40 +55,61 @@ class ViewServices extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Column(
-              children: [
-                const CircleAvatar(),
-                const SizedBox(height: 15),
-                Icon(customer.isMale ? Icons.person : Icons.person_3_rounded),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              const CircleAvatar(
+                radius: 45,
+              ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Row(
+                        children: [
+                          Icon(customer.isMale ? Icons.person : Icons.person_3_rounded),
+                          const SizedBox(width: 15),
+                          Text(
+                            customer.name.toUpperCase(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Icon(Icons.phone_android_rounded),
+                          const SizedBox(width: 15),
+                          Text(
+                            customer.phone.toUpperCase(),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Icon(Icons.email_rounded),
+                          const SizedBox(width: 15),
+                          Text(
+                            customer.email.toLowerCase(),
+                          ),
+                        ],
+                      )
+                    ])),
+              ),
+              div2(),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    const Icon(Icons.bookmark_added_rounded),
+                    const SizedBox(width: 15),
                     Text(
-                      customer.name.toUpperCase(),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      customer.phone.toUpperCase(),
-                    ),
-                    Text(
-                      customer.email.toLowerCase(),
-                    )
-                  ])),
-            ),
-            Row(
-              children: [
-                const Icon(Icons.bookmark_added_rounded),
-                const SizedBox(width: 15),
-                Text('${DateFormat.yMMMEd().format(serviceRequest.dateTime).split(',').join()}\n${DateFormat.jm().format(serviceRequest.dateTime)}',
-                    textAlign: TextAlign.center),
-              ],
-            ),
-          ],
+                        '${DateFormat.yMMMEd().format(serviceRequest.dateTime).split(',').join()}\n${DateFormat.jm().format(serviceRequest.dateTime)}',
+                        textAlign: TextAlign.center),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -98,49 +119,69 @@ class ViewServices extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Column(
-              children: [
-                const CircleAvatar(),
-                const SizedBox(height: 15),
-                Icon(serviceRequest.prefer == 0 ? Icons.man_2_rounded : Icons.woman_2_rounded),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: cleaner != null
-                      ? Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                          Text(
-                            cleaner!.name.toUpperCase(),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            cleaner!.phone.toUpperCase(),
-                          ),
-                          Text(
-                            cleaner!.email.toLowerCase(),
-                          )
-                        ])
-                      : Text('Unassigned'.toUpperCase())),
-            ),
-            Row(
-              children: [
-                const Icon(Icons.cleaning_services_rounded),
-                const SizedBox(width: 15),
-                Text(
-                    '${DateFormat.yMMMEd().format(serviceRequest.bookedDateTime).split(',').join()}\n${DateFormat.jm().format(serviceRequest.bookedDateTime)}',
-                    textAlign: TextAlign.center),
-              ],
-            ),
-          ],
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              const CircleAvatar(
+                radius: 45,
+              ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: cleaner != null
+                        ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                            Row(
+                              children: [
+                                Icon(serviceRequest.prefer == 0 ? Icons.man_2_rounded : Icons.woman_2_rounded),
+                                const SizedBox(width: 15),
+                                Text(
+                                  cleaner!.name.toUpperCase(),
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.phone_android_rounded),
+                                const SizedBox(width: 15),
+                                Text(
+                                  cleaner!.phone.toUpperCase(),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.email_rounded),
+                                const SizedBox(width: 15),
+                                Text(
+                                  cleaner!.email.toLowerCase(),
+                                ),
+                              ],
+                            )
+                          ])
+                        : Text('Unassigned'.toUpperCase())),
+              ),
+              div2(),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    const Icon(Icons.cleaning_services_rounded),
+                    const SizedBox(width: 15),
+                    Text(
+                        '${DateFormat.yMMMEd().format(serviceRequest.bookedDateTime).split(',').join()}\n${DateFormat.jm().format(serviceRequest.bookedDateTime)}',
+                        textAlign: TextAlign.center),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget line3() {
+  SingleChildScrollView line3() {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -202,7 +243,6 @@ class ViewServices extends StatelessWidget {
           children: [
             const Text('Customer'),
             line1(),
-            div(),
             const Text('Cleaner'),
             line2(),
             div(),
@@ -217,6 +257,10 @@ class ViewServices extends StatelessWidget {
 
   Divider div() {
     return Divider(color: Colors.amber[900], endIndent: 60, indent: 60);
+  }
+
+  VerticalDivider div2() {
+    return VerticalDivider(color: Colors.amber[900], endIndent: 15, indent: 15);
   }
 
   @override
