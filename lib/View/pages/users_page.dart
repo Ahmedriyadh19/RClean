@@ -10,31 +10,40 @@ class UsersPage extends StatefulWidget {
 
 class _UsersPageState extends State<UsersPage> {
   List<UserBox> r = [];
+
+  Center loading() {
+    return Center(
+      child: Column(
+        children: const [
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: CircularProgressIndicator(),
+          ),
+          Text('Loading ...')
+        ],
+      ),
+    );
+  }
+
+  Expanded gotData() {
+    return Expanded(
+      child: GridView(
+        padding: const EdgeInsets.all(15),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            mainAxisExtent: 200, maxCrossAxisExtent: 600, childAspectRatio: 3 / 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
+        children: r,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return r.isNotEmpty
-        ? Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 60,
-                    width: 600,
-                    color: Colors.greenAccent,
-                  )
-                ],
-              ),
-              Expanded(
-                child: GridView(
-                  padding: const EdgeInsets.all(15),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      mainAxisExtent: 200, maxCrossAxisExtent: 600, childAspectRatio: 3 / 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
-                  children: r,
-                ),
-              ),
-            ],
-          )
-        : const Center(child: CircularProgressIndicator());
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        //  sorting(),
+        r.isNotEmpty ? gotData() : loading()
+      ],
+    );
   }
 }

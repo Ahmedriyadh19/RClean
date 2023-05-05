@@ -15,11 +15,11 @@ class _RequestsPageState extends State<RequestsPage> {
   @override
   void initState() {
     super.initState();
-    fetchRequestClean();
+    //  fetchRequestClean();
   }
 
 // From Firebase ;
-  fetchRequestClean() {
+  void fetchRequestClean() {
     for (int i = 0; i < 500; i++) {
       requestsClean.add(RequestServicesBox(
         service: ServiceRequest(
@@ -53,7 +53,7 @@ class _RequestsPageState extends State<RequestsPage> {
     }
   }
 
-  sorting() {
+ Container sorting() {
     return Container(
       height: 50,
       width: 150,
@@ -62,22 +62,35 @@ class _RequestsPageState extends State<RequestsPage> {
     );
   }
 
+Center  loading() {
+    return Center(
+      child: Column(
+        children: const [Padding(
+          padding: EdgeInsets.all(15),
+          child: CircularProgressIndicator(),
+        ), Text('Loading ...')],
+      ),
+    );
+  }
+
+ Expanded gotData() {
+    return Expanded(
+      child: GridView(
+        padding: const EdgeInsets.all(15),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            mainAxisExtent: 200, maxCrossAxisExtent: 600, childAspectRatio: 3 / 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
+        children: requestsClean,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return requestsClean.isNotEmpty
-        ? Column(
-            children: [
-              //  sorting(),
-              Expanded(
-                child: GridView(
-                  padding: const EdgeInsets.all(15),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      mainAxisExtent: 200, maxCrossAxisExtent: 600, childAspectRatio: 3 / 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
-                  children: requestsClean,
-                ),
-              ),
-            ],
-          )
-        : const Center(child: CircularProgressIndicator());
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        requestsClean.isNotEmpty ? gotData() : loading()
+      ],
+    );
   }
 }
