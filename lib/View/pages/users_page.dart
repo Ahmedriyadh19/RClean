@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:r_clean_admin/Model/user.dart';
 import 'package:r_clean_admin/View/Components/user_box.dart';
 
 class UsersPage extends StatefulWidget {
@@ -10,6 +11,17 @@ class UsersPage extends StatefulWidget {
 
 class _UsersPageState extends State<UsersPage> {
   List<UserBox> r = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  fetchUsers() {
+    for (int i = 0; i < 500; i++) {
+     // r.add(const UserBox(u: MyUser(address: ''),));
+    }
+  }
 
   Center loading() {
     return Center(

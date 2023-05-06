@@ -216,20 +216,20 @@ class ViewServices extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Expanded(
-                child: (serviceRequest.feedback != null && serviceRequest.feedback!.isNotEmpty)
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: SelectableText(
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
+                  child: (serviceRequest.feedback != null && serviceRequest.feedback!.isNotEmpty)
+                      ? SelectableText(
                           serviceRequest.feedback!,
                           textAlign: TextAlign.start,
-                        ),
-                      )
-                    : Center(child: Text('feedback N/A'.toUpperCase()))),
-            drawStars()
-          ],
+                        )
+                      : Center(child: Text('feedback N/A'.toUpperCase()))),
+              div2(),
+              drawStars()
+            ],
+          ),
         ),
       ),
     );

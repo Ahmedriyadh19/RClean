@@ -1,4 +1,5 @@
 // ignore_for_file: must_be_immutable
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stories/flutter_stories.dart';
 import 'package:intl/intl.dart';
@@ -195,9 +196,20 @@ class RequestServicesBox extends StatelessWidget {
   }
 
   List<MyUser> fetchUsers() {
+    final random = RandomGenerator(seed: 4555415);
+    final faker = Faker.withGenerator(random);
     List<MyUser> x = [];
     for (var i = 0; i < 2; i++) {
-      x.add(MyUser(address: 'ss', email: 'hfh', id: '', name: 'jsonc', password: 'raja', phone: '+57441f', rate: 5, type: 1, isMale: true));
+      x.add(MyUser(
+          address: faker.address.state(),
+          email: faker.internet.email(),
+          id: '',
+          name: faker.person.name(),
+          password: 'raja',
+          phone: faker.phoneNumber.de().toString(),
+          rate: 5,
+          type: 1,
+          isMale: true));
     }
     return x;
   }
