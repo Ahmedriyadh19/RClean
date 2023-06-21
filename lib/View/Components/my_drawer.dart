@@ -44,9 +44,9 @@ class _MyDrawerState extends State<MyDrawer> {
     return Container(
       margin: const EdgeInsets.all(15),
       child: ElevatedButton(
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text('Logout'),
             SizedBox(
               width: 20,

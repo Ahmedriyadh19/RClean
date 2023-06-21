@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:r_clean_admin/Model/user.dart';
 import 'package:r_clean_admin/View/Components/user_box.dart';
 
 class UsersPage extends StatefulWidget {
@@ -24,9 +23,9 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   Center loading() {
-    return Center(
+    return const Center(
       child: Column(
-        children: const [
+        children: [
           Padding(
             padding: EdgeInsets.all(15),
             child: CircularProgressIndicator(),

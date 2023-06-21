@@ -63,14 +63,14 @@ class _RequestsPageState extends State<RequestsPage> {
       height: 50,
       width: 150,
       color: Colors.greenAccent,
-      child: Row(children: const []),
+      child: const Row(children: []),
     );
   }
 
   Center loading() {
-    return Center(
+    return const Center(
       child: Column(
-        children: const [
+        children: [
           Padding(
             padding: EdgeInsets.all(15),
             child: CircularProgressIndicator(),

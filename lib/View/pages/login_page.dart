@@ -62,11 +62,11 @@ class _LoginPageState extends State<LoginPage> {
 
   ElevatedButton submitBtn() {
     return ElevatedButton(
-      child: SizedBox(
+      child: const SizedBox(
           width: 100,
           child: Center(
               child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: const [Text('Login'), SizedBox(width: 20), Icon(Icons.login_rounded)]))),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text('Login'), SizedBox(width: 20), Icon(Icons.login_rounded)]))),
       onPressed: () async {
         validation();
       },
